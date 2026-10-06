@@ -1,0 +1,129 @@
+.about {
+  background: var(--bg-primary);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2rem;
+  }
+
+  &__text {
+    padding: 2.5rem;
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  &__highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    &-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    &-value {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  &__stat-card {
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-4px);
+      .about__stat-bar { transform: scaleX(1); }
+    }
+  }
+
+  &__stat-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  &__stat-suffix {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  &__stat-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+
+  &__stat-bar {
+    height: 2px;
+    background: var(--gradient-accent);
+    margin-top: 1rem;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 999px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+  .about__text {
+    padding: 1.75rem;
+  }
+  .about__highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .about__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .about__stat-card {
+    padding: 1.25rem 0.75rem;
+  }
+  .about__stat-number {
+    font-size: 1.6rem;
+  }
+}

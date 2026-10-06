@@ -1,0 +1,179 @@
+.projects {
+  background: var(--bg-secondary);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.75rem;
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-hover);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(134, 196, 218, 0.1);
+
+    .project-card__visual {
+      .project-card__visual-glow { opacity: 0.6; }
+      .project-card__visual-icon { transform: scale(1.1) rotate(-5deg); }
+      .project-card__visual-overlay { opacity: 0.3; }
+    }
+
+    .project-card__border-glow { opacity: 1; }
+  }
+
+  &__visual {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+
+    &--farmaid {
+      background: linear-gradient(135deg, #0d3b2e 0%, #1a5c47 100%);
+    }
+    &--meditrust {
+      background: linear-gradient(135deg, #1a2342 0%, #2a3464 100%);
+    }
+    &--dental {
+      background: linear-gradient(135deg, #2d1b3d 0%, #4a2d5e 100%);
+    }
+  }
+
+  &__visual-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.5;
+  }
+
+  &__visual-glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(134, 196, 218, 0.4) 0%, transparent 70%);
+    filter: blur(20px);
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+  }
+
+  &__visual-icon {
+    position: relative;
+    color: rgba(255, 255, 255, 0.6);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+  }
+
+  &__visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+    opacity: 0.1;
+    transition: opacity 0.4s ease;
+  }
+
+  &__body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+  }
+
+  &__tagline {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  &__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  &__icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    transition: all 0.25s ease;
+    margin-left: auto;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:hover {
+      background: rgba(134, 196, 218, 0.1);
+      color: var(--accent);
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__border-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(134, 196, 218, 0.5), transparent 50%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+  .project-card__body {
+    padding: 1.25rem;
+  }
+}
