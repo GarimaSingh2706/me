@@ -34,7 +34,6 @@ export interface Project {
   technologies: string[];
   image: string;
   githubUrl: string;
-  liveUrl: string;
   featured: boolean;
 }
 
@@ -52,7 +51,6 @@ export interface ProjectDetail {
   challenges: string;
   learnings: string;
   githubUrl: string;
-  liveUrl: string;
 }
 
 export interface Certification {

@@ -1,3 +1,4 @@
+
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -13,24 +14,51 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
   template: `
     <section class="project-detail" *ngIf="project() as p">
       <!-- Hero -->
-      <div class="project-detail__hero" [class]="'project-detail__hero--' + p.heroImage">
+      <div
+        class="project-detail__hero"
+        [class]="'project-detail__hero--' + p.heroImage"
+      >
         <div class="project-detail__hero-overlay"></div>
+
         <div class="container project-detail__hero-content">
           <a class="project-detail__back" routerLink="/projects">
             <app-icon icon="arrow_left" [size]="18" />
             <span>Back to Projects</span>
           </a>
-          <p class="project-detail__hero-label mono" appScrollReveal>Case Study</p>
-          <h1 class="project-detail__hero-title" appScrollReveal [revealDelay]="100">{{ p.title }}</h1>
-          <p class="project-detail__hero-tagline" appScrollReveal [revealDelay]="200">{{ p.tagline }}</p>
-          <div class="project-detail__hero-actions" appScrollReveal [revealDelay]="300">
-            <a class="btn btn-primary" [href]="p.githubUrl" target="_blank" rel="noopener noreferrer">
+
+          <p class="project-detail__hero-label mono" appScrollReveal>
+            Case Study
+          </p>
+
+          <h1
+            class="project-detail__hero-title"
+            appScrollReveal
+            [revealDelay]="100"
+          >
+            {{ p.title }}
+          </h1>
+
+          <p
+            class="project-detail__hero-tagline"
+            appScrollReveal
+            [revealDelay]="200"
+          >
+            {{ p.tagline }}
+          </p>
+
+          <div
+            class="project-detail__hero-actions"
+            appScrollReveal
+            [revealDelay]="300"
+          >
+            <a
+              class="btn btn-primary"
+              [href]="p.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <app-icon icon="github" [size]="18" />
               <span>GitHub</span>
-            </a>
-            <a class="btn btn-secondary" [href]="p.liveUrl" target="_blank" rel="noopener noreferrer">
-              <app-icon icon="external" [size]="18" />
-              <span>Live Demo</span>
             </a>
           </div>
         </div>
@@ -46,7 +74,11 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
 
         <div class="project-detail__two-col">
           <!-- Problem -->
-          <div class="project-detail__section glass-card" appScrollReveal [revealDelay]="100">
+          <div
+            class="project-detail__section glass-card"
+            appScrollReveal
+            [revealDelay]="100"
+          >
             <h3 class="project-detail__subheading">
               <app-icon icon="zap" [size]="20" />
               The Problem
@@ -55,7 +87,11 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
           </div>
 
           <!-- Solution -->
-          <div class="project-detail__section glass-card" appScrollReveal [revealDelay]="200">
+          <div
+            class="project-detail__section glass-card"
+            appScrollReveal
+            [revealDelay]="200"
+          >
             <h3 class="project-detail__subheading">
               <app-icon icon="check_circle" [size]="20" />
               The Solution
@@ -67,10 +103,18 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         <!-- Features -->
         <div class="project-detail__section glass-card" appScrollReveal>
           <h2 class="project-detail__heading">Key Features</h2>
+
           <div class="project-detail__features">
-            <div class="project-detail__feature" *ngFor="let feature of p.features; let i = index">
-              <span class="project-detail__feature-num mono">{{ String(i + 1).padStart(2, '0') }}</span>
-              <span class="project-detail__feature-text">{{ feature }}</span>
+            <div
+              class="project-detail__feature"
+              *ngFor="let feature of p.features; let i = index"
+            >
+              <span class="project-detail__feature-num mono">
+                {{ String(i + 1).padStart(2, '0') }}
+              </span>
+              <span class="project-detail__feature-text">
+                {{ feature }}
+              </span>
             </div>
           </div>
         </div>
@@ -78,11 +122,20 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
         <!-- Tech Stack -->
         <div class="project-detail__section glass-card" appScrollReveal>
           <h2 class="project-detail__heading">Tech Stack</h2>
+
           <div class="project-detail__stack">
-            <div class="project-detail__stack-category" *ngFor="let stack of p.techStack">
-              <h4 class="project-detail__stack-title mono">{{ stack.category }}</h4>
+            <div
+              class="project-detail__stack-category"
+              *ngFor="let stack of p.techStack"
+            >
+              <h4 class="project-detail__stack-title mono">
+                {{ stack.category }}
+              </h4>
+
               <div class="project-detail__stack-items">
-                <span class="tech-badge" *ngFor="let item of stack.items">{{ item }}</span>
+                <span class="tech-badge" *ngFor="let item of stack.items">
+                  {{ item }}
+                </span>
               </div>
             </div>
           </div>
@@ -96,7 +149,11 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
 
         <div class="project-detail__two-col">
           <!-- Challenges -->
-          <div class="project-detail__section glass-card" appScrollReveal [revealDelay]="100">
+          <div
+            class="project-detail__section glass-card"
+            appScrollReveal
+            [revealDelay]="100"
+          >
             <h3 class="project-detail__subheading">
               <app-icon icon="cpu" [size]="20" />
               Challenges
@@ -105,7 +162,11 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
           </div>
 
           <!-- Learnings -->
-          <div class="project-detail__section glass-card" appScrollReveal [revealDelay]="200">
+          <div
+            class="project-detail__section glass-card"
+            appScrollReveal
+            [revealDelay]="200"
+          >
             <h3 class="project-detail__subheading">
               <app-icon icon="sparkles" [size]="20" />
               Learnings
@@ -116,10 +177,16 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
 
         <!-- CTA -->
         <div class="project-detail__cta" appScrollReveal>
-          <a class="btn btn-primary" [href]="p.githubUrl" target="_blank" rel="noopener noreferrer">
+          <a
+            class="btn btn-primary"
+            [href]="p.githubUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <app-icon icon="github" [size]="18" />
             <span>View on GitHub</span>
           </a>
+
           <a class="btn btn-secondary" routerLink="/projects">
             <span>Explore Other Projects</span>
             <app-icon icon="arrow_right" [size]="18" />
@@ -131,7 +198,9 @@ import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.dir
     <!-- Not found -->
     <div class="container project-detail__not-found" *ngIf="!project()">
       <h2>Project not found</h2>
-      <a class="btn btn-primary" routerLink="/projects">Back to Projects</a>
+      <a class="btn btn-primary" routerLink="/projects">
+        Back to Projects
+      </a>
     </div>
   `,
   styleUrl: './project-detail.component.scss',
@@ -140,7 +209,9 @@ export class ProjectDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private dataService = inject(PortfolioDataService);
 
-  project = signal<ProjectDetail | undefined>(this.dataService.getProjectBySlug(''));
+  project = signal<ProjectDetail | undefined>(
+    this.dataService.getProjectBySlug('')
+  );
 
   readonly String = String;
 

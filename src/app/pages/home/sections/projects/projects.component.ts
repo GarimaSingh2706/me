@@ -1,3 +1,4 @@
+
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -15,7 +16,9 @@ import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reve
         <div class="section-header" appScrollReveal>
           <span class="section-label mono">04. Projects</span>
           <h2 class="section-title">Featured Work</h2>
-          <p class="section-subtitle">A selection of projects showcasing full-stack and ML expertise</p>
+          <p class="section-subtitle">
+            A selection of projects showcasing full-stack and ML expertise
+          </p>
         </div>
 
         <div class="projects__grid">
@@ -26,12 +29,17 @@ import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reve
             [revealDelay]="i * 120"
           >
             <!-- Visual placeholder -->
-            <div class="project-card__visual" [class]="'project-card__visual--' + project.image">
+            <div
+              class="project-card__visual"
+              [class]="'project-card__visual--' + project.image"
+            >
               <div class="project-card__visual-grid"></div>
               <div class="project-card__visual-glow"></div>
+
               <div class="project-card__visual-icon">
                 <app-icon [icon]="getProjectIcon(project.slug)" [size]="40" />
               </div>
+
               <div class="project-card__visual-overlay"></div>
             </div>
 
@@ -41,19 +49,28 @@ import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reve
               <p class="project-card__desc">{{ project.description }}</p>
 
               <div class="project-card__tech">
-                <span class="tech-badge" *ngFor="let tech of project.technologies">{{ tech }}</span>
+                <span class="tech-badge" *ngFor="let tech of project.technologies">
+                  {{ tech }}
+                </span>
               </div>
 
               <div class="project-card__actions">
-                <button class="btn btn-ghost" (click)="viewDetails(project.slug)">
+                <button
+                  class="btn btn-ghost"
+                  (click)="viewDetails(project.slug)"
+                >
                   <span>View Details</span>
                   <app-icon icon="arrow_right" [size]="16" />
                 </button>
-                <a class="project-card__icon-btn" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+
+                <a
+                  class="project-card__icon-btn"
+                  [href]="project.githubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub repository"
+                >
                   <app-icon icon="github" [size]="18" />
-                </a>
-                <a class="project-card__icon-btn" [href]="project.liveUrl" target="_blank" rel="noopener noreferrer" aria-label="Live demo">
-                  <app-icon icon="external" [size]="18" />
                 </a>
               </div>
             </div>
@@ -82,6 +99,7 @@ export class ProjectsComponent {
       meditrust: 'server',
       'dental-cavity-detection': 'eye',
     };
+
     return icons[slug] || 'folder';
   }
 }

@@ -1,4 +1,11 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+
+import {
+  Component,
+  inject,
+  AfterViewInit,
+  OnDestroy,
+} from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { PortfolioDataService } from '../../../../core/services/portfolio-data.service';
 import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reveal.directive';
@@ -16,23 +23,51 @@ import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reve
         </div>
 
         <div class="about__grid">
-          <div class="about__text glass-card" appScrollReveal [revealDelay]="100">
+          <div
+            class="about__text glass-card"
+            appScrollReveal
+            [revealDelay]="100"
+          >
             <p>{{ aboutInfo.text }}</p>
+
             <div class="about__highlights">
-              <div class="about__highlight" *ngFor="let h of aboutInfo.highlights">
-                <span class="about__highlight-label mono">{{ h.label }}</span>
-                <span class="about__highlight-value">{{ h.value }}</span>
+              <div
+                class="about__highlight"
+                *ngFor="let h of aboutInfo.highlights"
+              >
+                <span class="about__highlight-label mono">
+                  {{ h.label }}
+                </span>
+                <span class="about__highlight-value">
+                  {{ h.value }}
+                </span>
               </div>
             </div>
           </div>
 
-          <div class="about__stats" appScrollReveal [revealDelay]="200">
-            <div class="about__stat-card glass-card" *ngFor="let stat of aboutInfo.stats; let i = index">
+          <div
+            class="about__stats"
+            appScrollReveal
+            [revealDelay]="200"
+          >
+            <div
+              class="about__stat-card glass-card"
+              *ngFor="let stat of aboutInfo.stats"
+            >
               <div class="about__stat-value">
-                <span class="about__stat-number" [attr.data-value]="stat.value" [attr.data-suffix]="stat.suffix">0</span>
-                <span class="about__stat-suffix">{{ stat.suffix }}</span>
+                <span
+                  class="about__stat-number"
+                  [attr.data-value]="stat.value"
+                >0</span>
+                <span class="about__stat-suffix">
+                  {{ stat.suffix }}
+                </span>
               </div>
-              <div class="about__stat-label">{{ stat.label }}</div>
+
+              <div class="about__stat-label">
+                {{ stat.label }}
+              </div>
+
               <div class="about__stat-bar"></div>
             </div>
           </div>
@@ -42,54 +77,76 @@ import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reve
   `,
   styleUrl: './about.component.scss',
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class AboutComponent implements AfterViewInit, OnDestroy {
   private dataService = inject(PortfolioDataService);
+
   aboutInfo = this.dataService.aboutInfo;
 
-  private observer: IntersectionObserver | null = null;
+  private intervalIds: number[] = [];
+  private destroyed = false;
 
-  ngOnInit(): void {
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            this.animateCounter(entry.target as HTMLElement);
-            this.observer?.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.5 }
-    );
-    setTimeout(() => {
-      document.querySelectorAll('.about__stat-number').forEach((el) => {
-        this.observer?.observe(el);
+  ngAfterViewInit(): void {
+    // Start after Angular has rendered the view.
+    requestAnimationFrame(() => {
+      if (this.destroyed) {
+        return;
+      }
+
+      const counters = document.querySelectorAll<HTMLElement>(
+        '#about .about__stat-number'
+      );
+
+      counters.forEach((counter) => {
+        this.animateCounter(counter);
       });
-    }, 500);
-  }
-
-  ngOnDestroy(): void {
-    this.observer?.disconnect();
+    });
   }
 
   private animateCounter(el: HTMLElement): void {
-    const target = parseFloat(el.dataset['value'] || '0');
-    const suffix = el.dataset['suffix'] || '';
-    const duration = 1500;
-    const start = performance.now();
-    const isDecimal = target % 1 !== 0;
+    const target = Number(el.getAttribute('data-value') ?? 0);
 
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const value = target * eased;
-      el.textContent = isDecimal ? value.toFixed(2) : Math.floor(value).toString();
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        el.textContent = isDecimal ? target.toFixed(2) : target.toString() + suffix;
-        if (suffix) el.textContent = isDecimal ? target.toFixed(2) : target.toString();
+    if (!Number.isFinite(target)) {
+      return;
+    }
+
+    const duration = 1500;
+    const steps = 30;
+    const increment = target / steps;
+    let currentStep = 0;
+
+    const intervalId = window.setInterval(() => {
+      if (this.destroyed) {
+        window.clearInterval(intervalId);
+        return;
       }
-    };
-    requestAnimationFrame(tick);
+
+      currentStep++;
+
+      const value =
+        currentStep >= steps
+          ? target
+          : increment * currentStep;
+
+      el.textContent = Number.isInteger(target)
+        ? Math.floor(value).toString()
+        : value.toFixed(2);
+
+      if (currentStep >= steps) {
+        el.textContent = target.toString();
+        window.clearInterval(intervalId);
+      }
+    }, duration / steps);
+
+    this.intervalIds.push(intervalId);
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
+
+    this.intervalIds.forEach((id) => {
+      window.clearInterval(id);
+    });
+
+    this.intervalIds = [];
   }
 }

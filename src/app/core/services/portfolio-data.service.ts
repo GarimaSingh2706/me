@@ -57,7 +57,7 @@ export class PortfolioDataService {
   };
 
   readonly aboutInfo = {
-    text: "I am a Computer Science graduate from VIT Bhopal University and currently work as a software developer at LTIMindtree. I enjoy building backend services, REST APIs and responsive web applications using Java, Spring Boot and Angular. I am particularly interested in solving real-world problems through clean, maintainable and scalable software.",
+    text: "I am a Computer Science graduate from VIT Bhopal University and currently work as a software developer at LTM. I enjoy building backend services, REST APIs and responsive web applications using Java, Spring Boot and Angular. I am particularly interested in solving real-world problems through clean, maintainable and scalable software.",
     highlights: [
       { label: 'B.Tech CSE', value: 'VIT Bhopal University' },
       { label: 'Period', value: '2021–2025' },
@@ -103,21 +103,23 @@ export class PortfolioDataService {
 
   readonly experience: ExperienceItem[] = [
     {
-      company: 'LTIMindtree',
+      company: 'LTM',
       role: 'Software Developer',
       period: '2025 – Present',
       current: true,
       description:
         'Building enterprise-grade backend services and web applications for client projects using modern Java and Angular technologies.',
-      achievements: [
-        'Developing Spring Boot REST APIs for production services',
-        'Backend workflow automation and business logic implementation',
-        'Building responsive Angular applications with modern UI patterns',
-        'Improving API search functionality and query performance',
-        'PostgreSQL and database-level optimization work',
-        'Data processing and export functionality for reporting',
-        'Git and Maven based development workflow',
-      ],
+      achievements: 
+[
+  'Engineered Java and Spring Boot REST APIs for a banking case management platform across 8 countries',
+  'Automated SLA-based case escalation using scheduled Spring Boot batch jobs and notification workflows',
+  'Delivered 10–15 production change requests, implementing business logic enhancements and feature updates',
+  'Optimized case-listing APIs with 20-record pagination for datasets exceeding 30,000 cases',
+  'Reduced API response time from 2 minutes 45 seconds to 6 seconds through database query optimization',
+  'Developed PostgreSQL queries using INSERT, UPDATE, and multi-table JOINs to support banking workflows',
+  'Implemented automated email-triggered case creation, CRUD operations, and reliable backend processing',
+]
+,
       technologies: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Git', 'Maven'],
     },
   ];
@@ -131,8 +133,7 @@ export class PortfolioDataService {
         'Farmer loan management platform with user loan applications, administration, CRUD operations, feedback and REST APIs.',
       technologies: ['Java', 'Spring Boot', 'Angular', 'MySQL'],
       image: 'farmaid',
-      githubUrl: 'https://github.com/garima-singh/farmaid',
-      liveUrl: '#',
+      githubUrl: 'https://github.com/GarimaSingh2706/farmaid',
       featured: true,
     },
     {
@@ -143,8 +144,7 @@ export class PortfolioDataService {
         'Healthcare platform concept involving electronic health records, QR-based prescriptions and doctor dashboard.',
       technologies: ['Blockchain', 'Web Development', 'QR'],
       image: 'meditrust',
-      githubUrl: 'https://github.com/garima-singh/meditrust',
-      liveUrl: '#',
+      githubUrl: 'https://github.com/Sehat-Sansar',
       featured: true,
     },
     {
@@ -155,8 +155,7 @@ export class PortfolioDataService {
         'CNN-based dental cavity detection system involving image preprocessing, augmentation and classification.',
       technologies: ['Python', 'TensorFlow', 'Keras', 'OpenCV'],
       image: 'dental',
-      githubUrl: 'https://github.com/garima-singh/dental-cavity-detection',
-      liveUrl: '#',
+      githubUrl: 'https://github.com/GarimaSingh2706/Cavity-Classification',
       featured: true,
     },
   ];
@@ -193,8 +192,7 @@ export class PortfolioDataService {
         'Designing a clean data model for loan workflows with multiple states, implementing role-based access control, and ensuring the Angular frontend provided a smooth experience for users with varying technical literacy.',
       learnings:
         'Deepened understanding of full-stack development, REST API design, Spring Boot ecosystem, and building production-quality Angular applications with proper state management.',
-      githubUrl: 'https://github.com/garima-singh/farmaid',
-      liveUrl: '#',
+      githubUrl: 'https://github.com/GarimaSingh2706/farmaid',
     },
     meditrust: {
       slug: 'meditrust',
@@ -225,8 +223,7 @@ export class PortfolioDataService {
         'Ensuring data privacy and security for sensitive health records, designing an intuitive QR-based prescription flow, and architecting a system that balances blockchain immutability with practical usability.',
       learnings:
         'Explored blockchain applications in healthcare, QR code integration, and the importance of user-centered design in medical technology. Gained insight into the regulatory and privacy considerations of health data.',
-      githubUrl: 'https://github.com/garima-singh/meditrust',
-      liveUrl: '#',
+      githubUrl: 'https://github.com/Sehat-Sansar',
     },
     'dental-cavity-detection': {
       slug: 'dental-cavity-detection',
@@ -258,20 +255,63 @@ export class PortfolioDataService {
         'Limited dataset size requiring robust augmentation, preventing overfitting on medical images, and achieving meaningful classification accuracy on a specialized domain.',
       learnings:
         'Practical deep learning with TensorFlow/Keras, image preprocessing techniques, the importance of data augmentation for small datasets, and evaluating model performance in a medical context.',
-      githubUrl: 'https://github.com/garima-singh/dental-cavity-detection',
-      liveUrl: '#',
+      githubUrl: 'https://github.com/garima-singh/Cavity-Classification',
     },
   };
 
-  readonly certifications: Certification[] = [
-    { title: 'Google AI Essentials', issuer: 'Google', year: '2024', icon: 'ai', credentialUrl: '#' },
-    { title: 'Cloud Computing', issuer: 'NPTEL — IIT Kharagpur', year: '2024', icon: 'cloud', credentialUrl: '#' },
-    { title: 'UX Design', issuer: 'Google', year: '2024', icon: 'design', credentialUrl: '#' },
-    { title: 'Networking', issuer: 'Google', year: '2023', icon: 'network', credentialUrl: '#' },
-    { title: 'Computer Vision', issuer: 'VIT Bhopal', year: '2023', icon: 'eye', credentialUrl: '#' },
-    { title: 'Career Skills', issuer: 'LinkedIn', year: '2023', icon: 'career', credentialUrl: '#' },
-    { title: 'HackerRank Certifications', issuer: 'HackerRank', year: '2023', icon: 'code', credentialUrl: '#' },
-  ];
+  
+readonly certifications: Certification[] = [
+  {
+    title: 'Docker',
+    issuer: 'Udemy',
+    year: '2026',
+    icon: 'server',
+    credentialUrl: 'https://www.udemy.com/certificate/UC-1b7df1f2-3b8f-455a-82b8-ee8964eb0f19/',
+  },
+  {
+    title: 'SQL',
+    issuer: 'HackerRank',
+    year: '2026',
+    icon: 'database',
+    credentialUrl: 'https://www.hackerrank.com/certificates/d36b50759161',
+  },
+  {
+    title: 'Model Context Protocol',
+    issuer: 'Coursera',
+    year: '2026',
+    icon: 'ai',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/verify/6Z5IZ3SCO75C',
+  },
+  {
+    title: 'Getting started with Data',
+    issuer: 'IBM',
+    year: '2025',
+    icon: 'database',
+    credentialUrl: 'https://www.credly.com/badges/33baea62-246c-4fe1-ad5d-c38f2e59f947',
+  },
+  {
+    title: 'Google AI Essentials',
+    issuer: 'Google',
+    year: '2024',
+    icon: 'ai',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/verify/TUK5WYZGL9FV?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course',
+  },
+  {
+    title: 'Computer Networking',
+    issuer: 'Google',
+    year: '2023',
+    icon: 'network',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/verify/YVPC4YJVVTUT',
+  },
+  {
+    title: 'Career Skills',
+    issuer: 'LinkedIn',
+    year: '2022',
+    icon: 'career',
+    credentialUrl: 'https://www.linkedin.com/learning/certificates/f9364d7bfe15fe1158ace25919cf6c410cae6198238257f4c7eda5ef10d3e4cb?contentTrackingId=rehdAjoOS%2FSGdE57DPIcXw%3D%3D&viewName=premium-nav-upsell-text&upsellOrderOrigin=Tracking%3Av1%3Apremium_nav_upsell_text%3ANav%3AIn-Product',
+  },
+];
+
 
   readonly education: EducationItem[] = [
     {
