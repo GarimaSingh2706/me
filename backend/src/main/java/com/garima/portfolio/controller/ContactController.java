@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/contact")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {
+    "http://localhost:4200",
+    "https://me-two-umber.vercel.app"
+})
 public class ContactController {
 
     private final ContactService contactService;
