@@ -10,7 +10,7 @@ export class ContactService {
 
   private http = inject(HttpClient);
 
-  private readonly apiUrl = 'http://localhost:8080/api/contact';
+  private readonly apiUrl = 'https://garima-portfolio-backend.onrender.com/api/contact';
 
   submit(form: ContactForm): Observable<string> {
     return this.http.post(this.apiUrl, form, {
